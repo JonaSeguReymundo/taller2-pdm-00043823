@@ -21,7 +21,7 @@ fun MainScreen(navController: NavHostController, viewModel: MainViewModel) {
     val grouped = viewModel.restaurants.collectAsState().value.groupBy { it.category }
 
     Column(modifier = Modifier.padding(8.dp)) {
-    Text("JS Shop", style = MaterialTheme.typography.titleLarge)
+    Text("FoodSpot by Segura", style = MaterialTheme.typography.titleLarge)
     Spacer(modifier = Modifier.padding(8.dp))
 
     LazyColumn {
