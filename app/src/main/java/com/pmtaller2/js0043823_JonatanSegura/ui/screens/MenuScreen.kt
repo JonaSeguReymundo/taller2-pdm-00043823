@@ -15,10 +15,11 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.pmtaller2.js0043823_JonatanSegura.data.Restaurant
 import com.pmtaller2.js0043823_JonatanSegura.ui.components.DishCard
+import com.pmtaller2.js0043823_JonatanSegura.viewmodel.MainViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MenuScreen(restaurant: Restaurant, navController: NavHostController) {
+fun MenuScreen(restaurant: Restaurant, navController: NavHostController, viewModel: MainViewModel) {
     var search by remember { mutableStateOf("") }
     val context = LocalContext.current
     val filteredMenu = restaurant.menu.filter {
@@ -44,6 +45,7 @@ fun MenuScreen(restaurant: Restaurant, navController: NavHostController) {
         LazyColumn {
             items(filteredMenu) { dish ->
                 DishCard(dish) {
+                    viewModel.addToCart(dish)
                     Toast.makeText(context, "${dish.name} agregado al carrito", Toast.LENGTH_SHORT).show()
                 }
             }

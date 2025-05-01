@@ -1,5 +1,6 @@
 package com.pmtaller2.js0043823_JonatanSegura.ui.screens
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -9,6 +10,8 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
+import coil.compose.AsyncImage
+import androidx.compose.ui.layout.ContentScale
 import com.pmtaller2.js0043823_JonatanSegura.viewmodel.MainViewModel
 
 @Composable
@@ -24,7 +27,9 @@ fun SearchScreen(navController: NavHostController, viewModel: MainViewModel) {
                 )
     }
 
-    Column(modifier = Modifier.fillMaxSize().padding(16.dp)) {
+    Column(modifier = Modifier
+        .fillMaxSize()
+        .padding(16.dp)) {
         Text("Pantalla de búsqueda", style = MaterialTheme.typography.titleLarge)
         Spacer(Modifier.height(8.dp))
         TextField(
@@ -44,12 +49,24 @@ fun SearchScreen(navController: NavHostController, viewModel: MainViewModel) {
                             navController.navigate("menu/${restaurant.name}")
                         }
                 ) {
-                    Column(modifier = Modifier.padding(8.dp)) {
-                        Text(restaurant.name, style = MaterialTheme.typography.titleMedium)
-                        Text(restaurant.category, style = MaterialTheme.typography.bodySmall)
+                    Row(modifier = Modifier.padding(8.dp)) {
+                        AsyncImage(
+                            model = restaurant.imageUrl,
+                            contentDescription = null,
+                            modifier = Modifier
+                                .size(80.dp)
+                                .padding(end = 8.dp),
+                            contentScale = ContentScale.Crop
+                        )
+                        Column {
+                            Text(restaurant.name, style = MaterialTheme.typography.titleMedium)
+                            Text(restaurant.category, style = MaterialTheme.typography.bodySmall)
+                            Text(restaurant.description, style = MaterialTheme.typography.bodySmall)
+                        }
                     }
                 }
             }
         }
     }
 }
+

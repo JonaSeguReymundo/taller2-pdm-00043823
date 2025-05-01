@@ -37,7 +37,7 @@ fun NavigationGraph(modifier: Modifier = Modifier) {
                 SearchScreen(navController, viewModel)
             }
             composable(BottomNavItem.Orders.route) {
-                OrdersScreen()
+                OrdersScreen(viewModel)
             }
             composable(
                 route = "menu/{restaurantName}",
@@ -47,7 +47,7 @@ fun NavigationGraph(modifier: Modifier = Modifier) {
                 val restaurants = viewModel.restaurants.collectAsState().value
                 val restaurant = restaurants.find { it.name == restaurantName }
                 if (restaurant != null) {
-                    MenuScreen(restaurant, navController)
+                    MenuScreen(restaurant, navController, viewModel)
                 }
             }
         }

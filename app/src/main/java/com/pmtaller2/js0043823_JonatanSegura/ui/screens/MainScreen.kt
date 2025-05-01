@@ -1,5 +1,7 @@
 package com.pmtaller2.js0043823_JonatanSegura.ui.screens
 
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
@@ -17,6 +19,11 @@ import com.pmtaller2.js0043823_JonatanSegura.viewmodel.MainViewModel
 @Composable
 fun MainScreen(navController: NavHostController, viewModel: MainViewModel) {
     val grouped = viewModel.restaurants.collectAsState().value.groupBy { it.category }
+
+    Column(modifier = Modifier.padding(8.dp)) {
+    Text("JS Shop", style = MaterialTheme.typography.titleLarge)
+    Spacer(modifier = Modifier.padding(8.dp))
+
     LazyColumn {
         grouped.forEach { (category, list) ->
             item {
@@ -30,6 +37,6 @@ fun MainScreen(navController: NavHostController, viewModel: MainViewModel) {
                 }
             }
         }
-    }
+    }}
 }
 

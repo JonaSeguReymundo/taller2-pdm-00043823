@@ -2,6 +2,7 @@ package com.pmtaller2.js0043823_JonatanSegura.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.pmtaller2.js0043823_JonatanSegura.data.Dish
 import com.pmtaller2.js0043823_JonatanSegura.data.DummyData
 import com.pmtaller2.js0043823_JonatanSegura.data.Restaurant
 import kotlinx.coroutines.flow.*
@@ -28,4 +29,12 @@ class MainViewModel : ViewModel() {
                 }
             }
         }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), emptyList())
+
+
+    private val _cart = MutableStateFlow<List<Dish>>(emptyList())
+    val cart: StateFlow<List<Dish>> = _cart
+
+    fun addToCart(dish: Dish) {
+        _cart.value = _cart.value + dish
+    }
 }
