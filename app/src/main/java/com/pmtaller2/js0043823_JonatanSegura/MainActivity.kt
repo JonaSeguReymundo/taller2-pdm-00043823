@@ -22,7 +22,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             FoodSpotBySeguraTheme {
-               NavigationGraph(modifier = Modifier.padding(8.dp))
+               NavigationGraph()
             }
         }
     }
@@ -40,6 +40,6 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
 @Composable
 fun GreetingPreview() {
     FoodSpotBySeguraTheme {
-        Greeting("Android")
+        NavigationGraph()
     }
 }
